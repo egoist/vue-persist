@@ -1,6 +1,6 @@
 {
   "name": "vue-persist",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Persist data in localStorage for Vue.js apps.",
   "repository": {
     "url": "egoist/vue-persist",
@@ -29,8 +29,12 @@
   "xo": {
     "extends": "rem",
     "esnext": true,
-    "ignores": ["example/**/*"],
-    "envs": ["browser"]
+    "ignores": [
+      "example/**/*"
+    ],
+    "envs": [
+      "browser"
+    ]
   },
   "vbuild": {
     "homepage": "/vue-persist/",
