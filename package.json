@@ -16,7 +16,7 @@
     "build": "bili --name vue-persist --format umd --module-name VuePersist",
     "build:example": "vbuild --eslint",
     "dev": "vbuild -d",
-    "deploy": "gh-pages -d dist-example"
+    "deploy": "npm run build:example && gh-pages -d dist-example"
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
