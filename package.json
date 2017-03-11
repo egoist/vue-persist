@@ -1,6 +1,6 @@
 {
   "name": "vue-persist",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Persist data in localStorage or anywhere for Vue.js apps.",
   "repository": {
     "url": "egoist/vue-persist",
