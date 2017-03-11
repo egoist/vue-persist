@@ -1,0 +1,40 @@
+{
+  "name": "vue-persist",
+  "version": "0.0.0",
+  "description": "Persist data in localStorage for Vue.js apps.",
+  "repository": {
+    "url": "egoist/vue-persist",
+    "type": "git"
+  },
+  "main": "dist/vue-persist.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo 'no tests!' && npm run lint && npm run build",
+    "lint": "xo",
+    "build": "bili --name vue-persist --format umd --module-name VuePersist",
+    "build:example": "vbuild --eslint",
+    "dev": "vbuild -d",
+    "deploy": "gh-pages -d dist-example"
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "bili": "^0.14.0",
+    "eslint-config-rem": "^3.0.0",
+    "gh-pages": "^0.12.0",
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "extends": "rem",
+    "esnext": true,
+    "ignores": ["example/**/*"],
+    "envs": ["browser"]
+  },
+  "vbuild": {
+    "homepage": "/vue-persist/",
+    "entry": "example/index.js",
+    "dist": "dist-example"
+  }
+}
