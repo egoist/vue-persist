@@ -30,6 +30,33 @@ Then the data of `name` will be stored at localStorage and kept in sync.
 
 Check out the [demo](https://egoistian.com/vue-persist), just type some words and refresh the page.
 
+## API
+
+### Vue.use(VuePersist, [options])
+
+#### options
+
+##### name
+
+Type: `string`<br>
+Default: `persist:store`
+
+The name of the localStorage store.
+
+### this.$persist(keys, [name])
+
+#### keys
+
+Type: `Array`<br>
+Required: `true`
+
+Array of keys of state you want to keep in sync with localStorage.
+
+#### name
+
+Type: `string`<br>
+Default: `options.name`
+
 ## Contributing
 
 1. Fork it!
