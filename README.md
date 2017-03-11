@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/vue-persist.svg?style=flat)](https://npmjs.com/package/vue-persist) [![NPM downloads](https://img.shields.io/npm/dm/vue-persist.svg?style=flat)](https://npmjs.com/package/vue-persist) [![Build Status](https://img.shields.io/circleci/project/egoist/vue-persist/master.svg?style=flat)](https://circleci.com/gh/egoist/vue-persist) [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://github.com/egoist/donate)
 
-> Persist data in localStorage for Vue.js apps
+> Persist data in localStorage or anywhere for Vue.js apps
 
 ## Install
 
@@ -42,6 +42,20 @@ Type: `string`<br>
 Default: `persist:store`
 
 The name of the localStorage store.
+
+##### get
+
+Type: `function`<br>
+Default: `k => localStorage.get(k)`
+
+The function we use to get stored data.
+
+##### set
+
+Type: `function`<br>
+Default: `(k, v) => localStorage.set(k, v)`
+
+The function we use to store data.
 
 ### this.$persist(keys, [name])
 
