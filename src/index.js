@@ -1,12 +1,12 @@
 export default function (Vue, {
   name: defaultStoreName = 'persist:store',
-  get = k => localStorage.getItem(k),
-  set = (k, v) => localStorage.setItem(k, v)
+  read = k => localStorage.getItem(k),
+  write = (k, v) => localStorage.setItem(k, v)
 } = {}) {
   const cache = {}
 
   Vue.prototype.$persist = function (names, storeName = defaultStoreName) {
-    const data = cache[storeName] = JSON.parse(get(storeName) || '{}')
+    const data = cache[storeName] = JSON.parse(read(storeName) || '{}')
 
     for (const name of names) {
       if (typeof data[name] !== 'undefined') {
@@ -20,7 +20,7 @@ export default function (Vue, {
 
         this.$watch(name, val => {
           data[name] = val
-          set(storeName, JSON.stringify(data))
+          write(storeName, JSON.stringify(data))
         })
       }
     }

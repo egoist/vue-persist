@@ -43,14 +43,14 @@ Default: `persist:store`
 
 The name of the localStorage store.
 
-##### get
+##### read
 
 Type: `function`<br>
 Default: `k => localStorage.get(k)`
 
 The function we use to get stored data.
 
-##### set
+##### write
 
 Type: `function`<br>
 Default: `(k, v) => localStorage.set(k, v)`
