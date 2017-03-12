@@ -13,7 +13,7 @@ export default function (Vue, {
 
     if (isExpired(expiration)) {
       clear(storeName)
-      cache = null
+      cache[storeName] = null
     }
 
     if (!expiration) {
