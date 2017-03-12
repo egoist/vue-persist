@@ -3,7 +3,7 @@ import VuePersist from '../src'
 
 Vue.use(VuePersist, {
   name: 'store',
-  expires: 3
+  expiration: 3
 })
 
 new Vue({
