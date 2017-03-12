@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VuePersist from '../src'
 
-Vue.use(VuePersist)
+Vue.use(VuePersist, {
+  name: 'store',
+  expires: 3
+})
 
 new Vue({
   el: '#app',
