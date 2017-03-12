@@ -5,8 +5,7 @@ export default function (Vue, {
   write = (k, v) => localStorage.setItem(k, v),
   clear = k => localStorage.removeItem(k)
 } = {}) {
-  let cache = {}
-  const isExpired = expiration => expiration && new Date().getTime() > expiration
+  const cache = {}
 
   Vue.prototype.$persist = function (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) {
     let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
@@ -41,5 +40,9 @@ export default function (Vue, {
 }
 
 function getExpiration(exp) {
-  return exp ? new Date().getTime() + exp : 0
+  return exp ? Date.now() + exp : 0
+}
+
+function isExpired(exp) {
+  return exp && (Date.now() > exp)
 }
