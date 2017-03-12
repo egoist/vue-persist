@@ -32,7 +32,7 @@ export default function (Vue, {
         this._persistWatchers.push(name)
 
         this.$watch(name, val => {
-          data[name] = val
+          store.data[name] = val
           write(storeName, JSON.stringify(store))
         })
       }

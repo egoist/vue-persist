@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VuePersist from '../src'
 
 Vue.use(VuePersist, {
-  name: 'store'
+  name: 'store',
+  expiration: 1000 * 10 // 10s
 })
 
 new Vue({
