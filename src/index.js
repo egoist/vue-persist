@@ -20,12 +20,12 @@ export default function (Vue, {
       store.expiration = getExpiration(storeExpiration)
     }
 
+    this._persistWatchers = this._persistWatchers || []
+
     for (const name of names) {
       if (typeof store.data[name] !== 'undefined') {
         this[name] = store.data[name]
       }
-
-      this._persistWatchers = this._persistWatchers || []
 
       if (this._persistWatchers.indexOf(name) === -1) {
         this._persistWatchers.push(name)
