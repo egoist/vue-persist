@@ -43,6 +43,13 @@ Default: `persist:store`
 
 The name of the localStorage store.
 
+##### expiration
+
+Type: `number`<br>
+Default: `0`
+
+Expire store in a specific amount of time (in millisecond), default to never expire.
+
 ##### read
 
 Type: `function`<br>
@@ -57,7 +64,15 @@ Default: `(k, v) => localStorage.set(k, v)`
 
 The function we use to store data.
 
-### this.$persist(keys, [name])
+##### clear
+
+Type: `function`<br>
+Default: `k => localStorage.removeItem(k)`
+
+The function we use to clear data in store.
+
+
+### this.$persist(keys[, name, expiration])
 
 #### keys
 
@@ -70,6 +85,12 @@ Array of keys of state you want to keep in sync with localStorage.
 
 Type: `string`<br>
 Default: `options.name`
+
+#### expiration
+
+Type: `number`<br>
+Default: `options.expiration`
+
 
 ## Contributing
 

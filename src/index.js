@@ -1,16 +1,29 @@
 export default function (Vue, {
   name: defaultStoreName = 'persist:store',
+  expiration: defaultExpiration,
   read = k => localStorage.getItem(k),
-  write = (k, v) => localStorage.setItem(k, v)
+  write = (k, v) => localStorage.setItem(k, v),
+  clear = k => localStorage.removeItem(k)
 } = {}) {
-  const cache = {}
+  let cache = {}
+  const isExpired = expiration => expiration && new Date().getTime() > expiration
 
-  Vue.prototype.$persist = function (names, storeName = defaultStoreName) {
-    const data = cache[storeName] = JSON.parse(read(storeName) || '{}')
+  Vue.prototype.$persist = function (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) {
+    let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
+    store.data = store.data || {}
+
+    if (isExpired(store.expiration)) {
+      clear(storeName)
+      store = { data: {}, expiration: getExpiration(storeExpiration) }
+    }
+
+    if (!store.expiration) {
+      store.expiration = getExpiration(storeExpiration)
+    }
 
     for (const name of names) {
-      if (typeof data[name] !== 'undefined') {
-        this[name] = data[name]
+      if (typeof store.data[name] !== 'undefined') {
+        this[name] = store.data[name]
       }
 
       this._persistWatchers = this._persistWatchers || []
@@ -19,10 +32,14 @@ export default function (Vue, {
         this._persistWatchers.push(name)
 
         this.$watch(name, val => {
-          data[name] = val
-          write(storeName, JSON.stringify(data))
+          store.data[name] = val
+          write(storeName, JSON.stringify(store))
         })
       }
     }
   }
+}
+
+function getExpiration(exp) {
+  return exp ? new Date().getTime() + exp : 0
 }
