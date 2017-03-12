@@ -43,6 +43,13 @@ Default: `persist:store`
 
 The name of the localStorage store.
 
+##### expires
+
+Type: `number`<br>
+Default: `0`
+
+The days of persistence, default is forever.
+
 ##### read
 
 Type: `function`<br>
