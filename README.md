@@ -48,7 +48,7 @@ The name of the localStorage store.
 Type: `number`<br>
 Default: `0`
 
-The days of persistence, default is forever.
+Expire store in a specific amount of time (in millisecond), default to never expire.
 
 ##### read
 

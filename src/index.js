@@ -14,12 +14,11 @@ export default function (Vue, {
 
     if (isExpired(store.expiration)) {
       clear(storeName)
-      cache[storeName] = null
+      store = { data: {}, expiration: getExpiration(storeExpiration) }
     }
 
     if (!store.expiration) {
-      const d = new Date()
-      store.expiration = storeExpiration ? d.setDate(d.getDate() + storeExpiration) : 0
+      store.expiration = getExpiration(storeExpiration)
     }
 
     for (const name of names) {
@@ -39,4 +38,8 @@ export default function (Vue, {
       }
     }
   }
+}
+
+function getExpiration(exp) {
+  return exp ? new Date().getTime() + exp : 0
 }
