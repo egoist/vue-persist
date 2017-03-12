@@ -9,21 +9,22 @@ export default function (Vue, {
   const isExpired = expiration => expiration && new Date().getTime() > expiration
 
   Vue.prototype.$persist = function (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) {
-    let { expiration, data = {} } = cache[storeName] = JSON.parse(read(storeName) || '{}')
+    let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
+    store.data = store.data || {}
 
-    if (isExpired(expiration)) {
+    if (isExpired(store.expiration)) {
       clear(storeName)
       cache[storeName] = null
     }
 
-    if (!expiration) {
+    if (!store.expiration) {
       const d = new Date()
-      expiration = storeExpiration ? d.setDate(d.getDate() + storeExpiration) : 0
+      store.expiration = storeExpiration ? d.setDate(d.getDate() + storeExpiration) : 0
     }
 
     for (const name of names) {
-      if (typeof data[name] !== 'undefined') {
-        this[name] = data[name]
+      if (typeof store.data[name] !== 'undefined') {
+        this[name] = store.data[name]
       }
 
       this._persistWatchers = this._persistWatchers || []
@@ -33,7 +34,7 @@ export default function (Vue, {
 
         this.$watch(name, val => {
           data[name] = val
-          write(storeName, JSON.stringify({ data, expiration }))
+          write(storeName, JSON.stringify(store))
         })
       }
     }
