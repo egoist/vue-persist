@@ -13,7 +13,10 @@ export default function (Vue, {
 
     if (isExpired(store.expiration)) {
       clear(storeName)
-      store = { data: {}, expiration: getExpiration(storeExpiration) }
+      store = {
+        data: {},
+        expiration: getExpiration(storeExpiration)
+      }
     }
 
     if (!store.expiration) {

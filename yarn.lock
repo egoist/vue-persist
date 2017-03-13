@@ -1980,10 +1980,11 @@ eslint-config-rem@^3.0.0:
   resolved "https://registry.npmjs.org/eslint-config-rem/-/eslint-config-rem-3.0.0.tgz#ab963a991f7f7fd266e5dc0906d7551ce33be559"
 
 eslint-config-vue-app@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/eslint-config-vue-app/-/eslint-config-vue-app-1.1.0.tgz#6b7aa54619e5a5e303004c248c9ab5d5a588b3a4"
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/eslint-config-vue-app/-/eslint-config-vue-app-1.2.0.tgz#06278914a88b787dfa3e1d38ea49801603bcf3f8"
   dependencies:
     babel-eslint "^7.1.1"
+    eslint-config-rem "^3.0.0"
     eslint-config-xo "^0.17.0"
     eslint-plugin-vue "^2.0.1"
 
