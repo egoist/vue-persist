@@ -36,7 +36,7 @@ export default function (Vue, {
         this.$watch(name, val => {
           store.data[name] = val
           write(storeName, JSON.stringify(store))
-        }, {deep: true})
+        }, { deep: true })
       }
     }
   }
