@@ -9,20 +9,23 @@ Vue.use(VuePersist, {
 new Vue({
   el: '#app',
   data: {
-    name: ''
+    name: '',
+    model: {
+      name: ''
+    }
   },
   created() {
-    this.$persist(['name'])
+    this.$persist(['model.name'])
   },
   methods: {
     handleInput({ target }) {
-      this.name = target.value
+      this.model.name = target.value
     }
   },
   render() {
     return (
       <div>
-        <input type="text" value={this.name} onInput={this.handleInput} /> Your name?
+        <input type="text" value={this.model.name} onInput={this.handleInput} /> Your name?
       </div>
     )
   }
