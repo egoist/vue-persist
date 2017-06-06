@@ -8,6 +8,7 @@ export default function (Vue, {
   const cache = {}
 
   Vue.prototype.$persist = function (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) {
+    let changed = false
     let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
     store.data = store.data || {}
 
@@ -35,7 +36,15 @@ export default function (Vue, {
 
         this.$watch(name, val => {
           store.data[name] = val
-          write(storeName, JSON.stringify(store))
+          if (!changed) {
+            changed = true
+            this.$nextTick(() => {
+              if (changed) {
+                write(storeName, JSON.stringify(store))
+                changed = false
+              }
+            })
+          }
         }, {deep: true})
       }
     }
