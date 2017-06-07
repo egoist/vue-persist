@@ -65,7 +65,7 @@ Default: `(k, v) => localStorage.set(k, v)`
 The function we use to store data.
 
 ##### clear
-
+ 
 Type: `function`<br>
 Default: `k => localStorage.removeItem(k)`
 
@@ -90,6 +90,85 @@ Default: `options.name`
 
 Type: `number`<br>
 Default: `options.expiration`
+
+
+### this.$storage.write(key, value)
+
+#### key
+
+Type: `String`<br>
+Required: `true`
+
+The name of the key you want to create/update.
+
+#### value
+
+Type: `String`<br>
+Required: `true`
+
+The value you want to give the key you are creating/updating.
+
+
+### this.$storage.writeMulti(items)
+
+#### items
+
+Type: `Array`<br>
+Required: `true`
+
+An array of key/value pairs to store.
+
+
+### this.$storage.read(key)
+
+#### key
+
+Type: `String`<br>
+Required: `true`
+
+The name of the key you want to retrieve the value of.
+
+#### Retuns
+
+The value of the key. If the key does not exist, null is returned.
+
+
+### this.$storage.readMulti(keys)
+
+#### keys
+
+Type: `Array`<br>
+Required: `true`
+
+An array of key names to get the values of.
+
+#### Retuns
+
+An array of values based on the given keys.
+
+
+### this.$storage.clear(key)
+
+#### key
+
+Type: `String`<br>
+Required: `true`
+
+The name of the key you want to remove from storage.
+
+
+### this.$storage.clearMulti(keys)
+
+#### keys
+
+Type: `Array`<br>
+Required: `true`
+
+An array of key names to remove from storage.
+
+
+
+**Note: this.$storage is also available on the global Vue as Vue.storage**
 
 
 ## Contributing
