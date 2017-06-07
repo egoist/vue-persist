@@ -40,6 +40,23 @@ export default function (Vue, {
       }
     }
   }
+
+  Vue.storage = {
+    write,
+    writeMulti: items => items.forEach(data => write(data.key, data.value)),
+    read,
+    readMulti: keys => { return keys.map(key => read(key)) },
+    clear,
+    clearMulti: keys => keys.forEach(key => clear(key))
+  }
+
+  Object.defineProperties(Vue.prototype, {
+    $storage: {
+      get() {
+        return Vue.storage;
+      }
+    }
+  })
 }
 
 function getExpiration(exp) {
