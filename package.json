@@ -14,9 +14,9 @@
     "test": "echo 'no tests!' && npm run lint && npm run build",
     "lint": "xo",
     "build": "bili --name vue-persist --format umd --module-name VuePersist",
-    "build:example": "vbuild --eslint",
-    "dev": "vbuild -d",
-    "deploy": "npm run build:example && gh-pages -d dist-example"
+    "build:example": "poi build",
+    "dev": "poi",
+    "deploy": "npm run build:example && gh-pages -d example/dist"
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "bili": "^0.14.0",
     "eslint-config-rem": "^3.0.0",
     "gh-pages": "^0.12.0",
-    "vbuild": "^6.24.0",
+    "poi": "^9.2.4",
     "xo": "^0.17.1"
   },
   "xo": {
@@ -37,9 +37,9 @@
       "browser"
     ]
   },
-  "vbuild": {
+  "poi": {
     "homepage": "/vue-persist/",
     "entry": "example/index.js",
-    "dist": "dist-example"
+    "dist": "example/dist"
   }
 }
