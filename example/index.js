@@ -11,9 +11,7 @@ new Vue({
   data: {
     name: ''
   },
-  created() {
-    this.$persist(['name'])
-  },
+  persist: ['name'],
   methods: {
     handleInput({ target }) {
       this.name = target.value
