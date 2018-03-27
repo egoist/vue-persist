@@ -35,10 +35,13 @@ export default function (Vue, {
           if (this._persistWatchers.indexOf(name) === -1) {
             this._persistWatchers.push(name)
 
-            this.$watch(name, val => {
-              store.data[name] = val
-              write(storeName, JSON.stringify(store))
-            }, { deep: true })
+            this.$watch(name, {
+              handler: val => {
+                store.data[name] = val;
+                write(storeName, JSON.stringify(store));
+              },
+              deep: true
+            })
           }
         }
       }
