@@ -10,6 +10,15 @@ export default function (Vue, {
   Vue.mixin({
     beforeCreate() {
       this.$persist = (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) => {
+
+        let prefix = this.$options.name;
+        if (!prefix) {
+          console.error('You must set name to Vue components while using vue-persist');
+          return;
+        }
+
+        storeName = `${prefix}__${storeName}`
+
         let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
         store.data = store.data || {}
 
