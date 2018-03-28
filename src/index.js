@@ -11,10 +11,10 @@ export default function (Vue, {
     beforeCreate() {
       this.$persist = (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) => {
 
-        let prefix = this.$options.name;
+        let prefix = this.$options.name
         if (!prefix) {
-          console.error('You must set name to Vue components while using vue-persist');
-          return;
+          console.error('You must set name to Vue components while using vue-persist')
+          return
         }
 
         storeName = `${prefix}__${storeName}`
@@ -44,13 +44,10 @@ export default function (Vue, {
           if (this._persistWatchers.indexOf(name) === -1) {
             this._persistWatchers.push(name)
 
-            this.$watch(name, {
-              handler: val => {
-                store.data[name] = val;
-                write(storeName, JSON.stringify(store));
-              },
-              deep: true
-            })
+            this.$watch(name, val => {
+              store.data[name] = val;
+              write(storeName, JSON.stringify(store))
+            }, { deep: true })
           }
         }
       }
