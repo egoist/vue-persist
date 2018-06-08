@@ -45,9 +45,12 @@ export default function (Vue, {
     },
 
     created() {
-      const { persist } = this.$options
+      const { persist, persistStoreName, persistNamespaced } = this.$options
       if (persist) {
-        this.$persist(persist)
+        if (persistNamespaced === true)
+          persistStoreName = `persist:${this.$options.name}`
+        // persistStoreName may be undefined, $persist() will assume the default value
+        this.$persist(persist, persistStoreName)
       }
     }
   })
