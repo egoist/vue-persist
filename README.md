@@ -28,7 +28,7 @@ new Vue({
 
 Then the data of `name` will be stored at localStorage and kept in sync.
 
-Check out the [demo](https://egoistian.com/vue-persist), just type some words and refresh the page.
+Check out the [demo](https://egoist.github.io/vue-persist/), just type some words and refresh the page.
 
 You can also manually call `this.$persist(['some-data'])` instead of using the component option.
 
