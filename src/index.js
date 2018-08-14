@@ -8,8 +8,16 @@ export default function (Vue, {
   const cache = {}
 
   Vue.mixin({
-    beforeCreate() {
+    beforeCreate () {
       this.$persist = (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) => {
+        if (!Array.isArray(names)) {
+          read = names.read || read
+          write = names.write || write
+          clear = names.clear || clear
+          storeExpiration = names.expiration || storeExpiration
+          storeName = names.name || storeName
+          names = names.keys
+        }
         let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
         store.data = store.data || {}
 
@@ -44,7 +52,7 @@ export default function (Vue, {
       }
     },
 
-    created() {
+    created () {
       const { persist } = this.$options
       if (persist) {
         this.$persist(persist)
@@ -53,10 +61,10 @@ export default function (Vue, {
   })
 }
 
-function getExpiration(exp) {
+function getExpiration (exp) {
   return exp ? Date.now() + exp : 0
 }
 
-function isExpired(exp) {
+function isExpired (exp) {
   return exp && (Date.now() > exp)
 }

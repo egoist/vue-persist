@@ -24,7 +24,16 @@ new Vue({
 
   persist: ['name']
 })
+
+// and in any other component
+persist: {
+    keys: ['name'], 
+    write: (k, v) => { sessionStorage.setItem(k, v) },
+    read: (k, v) => { sessionStorage.get(k) },
+    clean: (k, v) => { sessionStorage.removeItem(k) }
+  }
 ```
+
 
 Then the data of `name` will be stored at localStorage and kept in sync.
 
@@ -74,7 +83,7 @@ Default: `k => localStorage.removeItem(k)`
 The function we use to clear data in store.
 
 
-### this.$persist(keys[, name, expiration])
+### this.$persist(options || keys[, name, expiration])
 
 #### keys
 
@@ -82,6 +91,12 @@ Type: `Array`<br>
 Required: `true`
 
 Array of keys of state you want to keep in sync with localStorage.
+
+#### options
+
+Type: `object`<br>
+
+May be used instead of keys. This object may contain all options that can be set the in Vue.use function and the keys array as property. 
 
 #### name
 
