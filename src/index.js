@@ -1,3 +1,10 @@
+const toKebabCase = str =>
+    str &&
+    str
+        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+        .map(x => x.toLowerCase())
+        .join('-')
+
 export default function (Vue, {
   name: defaultStoreName = 'persist:store',
   expiration: defaultExpiration,
@@ -45,9 +52,12 @@ export default function (Vue, {
     },
 
     created() {
-      const { persist } = this.$options
+      const { persist, persistKey, name } = this.$options
       if (persist) {
-        this.$persist(persist)
+          const storeName = persistKey ?
+              ( persistKey === true ) ? `persist:${toKebabCase(name)}` : `persist:${String(persistKey)}`
+              : undefined
+        this.$persist(persist, storeName)
       }
     }
   })
