@@ -52,10 +52,10 @@ export default function (Vue, {
     },
 
     created() {
-      const { persist, persistOwnStore, name } = this.$options
+      const { persist, persistKey, name } = this.$options
       if (persist) {
-          const storeName = persistOwnStore ?
-              ( persistOwnStore === true ) ? 'persist:' + toKebabCase(name) : 'persist:' + String(persistOwnStore)
+          const storeName = persistKey ?
+              ( persistKey === true ) ? `persist:${toKebabCase(name)}` : `persist:${String(persistKey)}`
               : undefined
         this.$persist(persist, storeName)
       }
