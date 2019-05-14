@@ -16,7 +16,7 @@ export default function (Vue, {
 
   Vue.mixin({
     beforeCreate() {
-      this.$persist = (names, storeName = this.name ? 'persist:' + toKebabCase(this.name) : defaultStoreName, storeExpiration = defaultExpiration) => {
+      this.$persist = (names, storeName =  defaultStoreName, storeExpiration = defaultExpiration) => {
         let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
         store.data = store.data || {}
 
@@ -52,9 +52,12 @@ export default function (Vue, {
     },
 
     created() {
-      const { persist } = this.$options
+      const { persist, persistOwnStore, name } = this.$options
       if (persist) {
-        this.$persist(persist)
+          const storeName = persistOwnStore ?
+              ( persistOwnStore === true ) ? 'persist:' + toKebabCase(name) : 'persist:' + String(persistOwnStore)
+              : undefined
+        this.$persist(persist, storeName)
       }
     }
   })
