@@ -16,7 +16,7 @@ export default function (Vue, {
 
   Vue.mixin({
     beforeCreate() {
-      this.$persist = (names, storeName =  defaultStoreName, storeExpiration = defaultExpiration) => {
+      this.$persist = (names, storeName = defaultStoreName, storeExpiration = defaultExpiration) => {
         let store = cache[storeName] = JSON.parse(read(storeName) || '{}')
         store.data = store.data || {}
 
